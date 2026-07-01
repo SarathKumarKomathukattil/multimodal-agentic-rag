@@ -1,6 +1,6 @@
 # Multimodal Agentic RAG Assistant
 
-A tool-using AI agent built with **LangGraph** that reads images, retrieves from a hybrid document index, searches the web, and calls live APIs — deciding on its own which tools to use for any request, then synthesizing the results into a single coherent answer.
+A tool-using AI agent built with **LangGraph** that reads images, retrieves from a hybrid document index, searches the web, and calls live APIs, deciding on its own which tools to use for any request, then synthesizing the results into a single coherent answer.
 
 The system pairs a **hybrid retriever** (keyword + semantic), **real API integrations** (Tavily web search, live OpenWeatherMap), a **vision tool** that reads text from images (making it multimodal), and a **Groq-hosted LLM** driving the reasoning loop.
 
@@ -8,7 +8,7 @@ The system pairs a **hybrid retriever** (keyword + semantic), **real API integra
 
 ## What it does
 
-Given a natural-language request — optionally referencing an image — the agent reasons about what information it needs and calls the right tools automatically.
+Given a natural-language request, optionally referencing an image - the agent reasons about what information it needs and calls the right tools automatically.
 
 Example request (all four tools in one turn):
 
@@ -21,13 +21,13 @@ The agent:
 3. **Searches the web** (`search_tool`) → finds a recent science/tech development to seed conversation.
 4. **Checks the weather** (`get_weather_info`) → reports London conditions for the umbrella question.
 
-All four results are woven into one natural response — the tools disappear, the answer just feels helpful.
+All four results are woven into one natural response the tools disappear, the answer just feels helpful.
 
 ---
 
 ## Multi-tool orchestration
 
-The agent doesn't follow a fixed pipeline — it decides which tools to call and in what order based on the request. A single query can trigger one tool or all four, chained automatically:
+The agent doesn't follow a fixed pipeline, it decides which tools to call and in what order based on the request. A single query can trigger one tool or all four, chained automatically:
 
 ```
 vision → retrieval → web search → weather
@@ -117,7 +117,7 @@ State flows through the graph as a growing message list, using LangGraph's `add_
 
 ### 1. Vision — extract text from images (multimodal)
 
-Reads text from an image file (an invitation, note, menu, or any picture with text) using a multimodal vision model (`llama-4-scout` via Groq). The image is base64-encoded and sent as a multimodal message. This is what makes the system multimodal — it accepts images as well as text.
+Reads text from an image file (an invitation, note, menu, or any picture with text) using a multimodal vision model (`llama-4-scout` via Groq). The image is base64-encoded and sent as a multimodal message. This is what makes the system multimodal, it accepts images as well as text.
 
 ### 2. Guest retriever — Hybrid BM25 + FAISS
 
